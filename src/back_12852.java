@@ -5,7 +5,10 @@ import java.io.InputStreamReader;
 public class back_12852 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15cb307 (백준 알고리즘 12852, 9465 두묹 다시보기)
         int n = Integer.parseInt(br.readLine());
 
         int dp[] = new int[n+1];
@@ -35,3 +38,7 @@ public class back_12852 {
         System.out.println(result);
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 15cb307 (백준 알고리즘 12852, 9465 두묹 다시보기)
