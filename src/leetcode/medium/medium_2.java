@@ -28,17 +28,15 @@ public class medium_2 {
 
         int max = Math.max(l1String.length(), l2String.length());
         int[] NodeInt = new int[max];
+        int place = max -1;
+        int carry = 0;
+        int sum;
         for(int i = 0; i < max; i++) {
-            int l1Int = 0;
-            int l2Int = 0;
-
-            if (l1Arr.length > i) {
-                l1Int = Integer.parseInt(l1Arr[i]);
-            }
-            if (l2Arr.length > i) {
-                l2Int = Integer.parseInt(l2Arr[i]);
-            }
-            NodeInt[i] = l1Int + l2Int;
+            int l1Int = (l1Arr.length > i) ? Integer.parseInt(l1Arr[i]) : 0;
+            int l2Int = (l2Arr.length > i) ? Integer.parseInt(l2Arr[i]) : 0;
+            sum = l1Int + l2Int + carry;
+            carry = sum / 10;
+            NodeInt[place-i] = sum % 10;
         }
 
         return createNode(NodeInt, NodeInt.length-1);
