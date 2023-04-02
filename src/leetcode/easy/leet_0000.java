@@ -1,66 +1,24 @@
 package leetcode.easy;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
 
-public class leet_0000 {
-    public static String[] main(String[] args) {
-        solution();
-    }
+class leet_0000 {
+        public int solution(int[] pays, String[][] infos, String[] target) {
+            int answer = 0;
 
-    public String[] solution() {
-        String[][] C = {{"PUSH","www.domain1.com"},{"PUSH","www.domain2.com"},{"PUSH","www.domain3.com"},{"BACK","1"},{"BACK","1"},{"PUSH","www.domain4.com"}};
-
-        int currentPage = 0;
-
-        List<String> historys = new LinkedList<>();
-        for (String[] value : C) {
-            if ("BACK".equals(value[0]) && currentPage != 0) {
-                currentPage--;
-            } else if ("NEXT".equals(value[0]) && currentPage < historys.size() - 1) {
-                currentPage++;
-            } else if ("PUSH".equals(value[0])) {
-                if (historys.size() != 0) {
-                    for (int i = currentPage + 1; i < historys.size(); i++) {
-                        historys.remove(i);
-                    }
+            List<Integer> payArr = new ArrayList<>();
+            for (String[] info : infos) {
+                if (info[0].equals(target[0]) && info[1].equals(target[1])) {
                 }
-                historys.add(value[1]);
-                currentPage = historys.size() - 1;
             }
-        }
 
-        return historys.toArray(new String[historys.size()]);
+            double average = payArr.stream().mapToDouble(pay -> pay).average().orElse(0.0);
+            double maxAverage = average * 1.8;
+            double minAverage = average * 0.2;
+
+            answer = payArr.stream().filter(pay -> (maxAverage <= pay && minAverage >= pay)).mapToInt(pay -> pay).sum();
+
+            return answer == 0 ? (int) average : answer/payArr.size();
+        }
     }
-
-    public String[] solution(String[][] C) {
-        int currentPage = 0;
-
-        List<String> historys = new LinkedList<>();
-        for (String[] value : C) {
-            if ("BACK".equals(value[0]) && currentPage != 0) {
-                currentPage--;
-            } else if ("NEXT".equals(value[0]) && currentPage < historys.size() - 1) {
-                currentPage++;
-            } else if ("PUSH".equals(value[0])) {
-                int count = currentPage + 1;
-                while (count < historys.size()) {
-                    historys.remove(i);
-                }
-                historys.add(value[1]);
-                currentPage = historys.size() - 1;
-            }
-        }
-
-        for (int i = 0; i < historys.size(); i++) {
-            if(historys.contains(historys.get(i))) {
-                historys[i];
-            }
-        }
-
-        return historys.toArray(new String[historys.size()]);
-    }
-
-}
