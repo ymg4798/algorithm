@@ -14,16 +14,22 @@ public class back_1269 {
         int M = Integer.parseInt(st.nextToken());
 
         st = new StringTokenizer(br.readLine(), " ");
-        List<Long> aList = new ArrayList<>();
+        HashSet<String> set = new HashSet<>();
         for (int i = 0; i < N; i++) {
-            aList.add(Long.parseLong(st.nextToken()));
+            set.add(st.nextToken());
         }
 
         st = new StringTokenizer(br.readLine(), " ");
-        List<Long> bList = new ArrayList<>();
         for (int i = 0; i < M; i++) {
-            bList.add(Long.parseLong(st.nextToken()));
+            String value = st.nextToken();
+
+            if (set.contains(value)) {
+                set.remove(value);
+                continue;
+            }
+            set.add(value);
         }
 
+        System.out.println(set.size());
     }
 }
