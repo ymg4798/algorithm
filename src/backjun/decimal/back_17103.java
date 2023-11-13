@@ -34,10 +34,9 @@ public class back_17103 {
             int result = 0;
             for (int j = 0; j < decimalList.size(); j++) {
                 if (j > n) break;
-                for (int l = j; l < decimalList.size(); l++) {
-                    if (l > n) break;
 
-                    if (decimalList.get(j) + decimalList.get(l) == n) result++;
+                if (isResult(n - decimalList.get(j))) {
+                    result++;
                 }
             }
             System.out.println(result);
