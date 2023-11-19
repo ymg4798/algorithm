@@ -16,6 +16,26 @@ public class back_11866 {
 
         Queue<Integer> queue = new LinkedList<>();
 
-        queue.
+        for (int i = 1; i <= N; i++) {
+            queue.offer(i);
+        }
+
+        bw.append("<");
+        for (int i = 0; i < N; i++) {
+            for (int j = 1; j <= K; j++) {
+                if (K == j) {
+                    if (queue.size() == 1) {
+                        bw.append("").append(String.valueOf(queue.poll()));
+                    } else {
+                        bw.append(String.valueOf(queue.poll())).append(", ");
+                    }
+                } else {
+                    queue.offer(queue.poll());
+                }
+            }
+        }
+        bw.append(">");
+
+        bw.flush();
     }
 }
