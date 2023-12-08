@@ -14,7 +14,6 @@ public class ArraySlice {
                 }
             }
         }
-
         return answer;
     }
 }
