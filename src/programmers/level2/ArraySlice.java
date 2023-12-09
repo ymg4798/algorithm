@@ -1,5 +1,8 @@
 package programmers.level2;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class ArraySlice {
     public int[] solution(int n, long left, long right) {
         int[] answer = new int[(int) (right - left) + 1];
