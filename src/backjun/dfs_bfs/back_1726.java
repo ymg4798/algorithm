@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class back_1726 {
 
-    static int[][] move = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+    static int[][] move = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -36,7 +36,6 @@ public class back_1726 {
 
         while (!q.isEmpty()) {
             Node poll = q.poll();
-            System.out.println(poll.toString());
             int d = poll.direction;
 
             if (poll.x == end[1] && poll.y == end[0] && poll.direction == end[2]) {
@@ -45,10 +44,14 @@ public class back_1726 {
             }
 
             for (int i = 1; i <= 3; i++) {
-                int dx = move[d-1][0]*i + poll.x;
-                int dy = move[d-1][1]*i + poll.y;
+                int dx = move[d - 1][0] * i + poll.x;
+                int dy = move[d - 1][1] * i + poll.y;
 
-                if(dx > 0 && dy > 0 && dx <= n && dy <= m && !visited[dx][dy][d] && board[dx][dy] == 0) {
+                if (dx <= 0 || dy <= 0 || dx > n || dy > m) continue;
+
+                if (board[dx][dy] == 1) break;
+
+                if (!visited[dx][dy][d]) {
                     visited[dx][dy][d] = true;
                     q.offer(new Node(dx, dy, d, poll.count + 1));
                 }
@@ -59,7 +62,7 @@ public class back_1726 {
 
                 visited[poll.x][poll.y][i] = true;
 
-                int plus = (i % 2 == d % 2) ? 2 : 1;
+                int plus = (isCheck(d, i)) ? 2 : 1;
                 q.offer(new Node(poll.x, poll.y, i, poll.count + plus));
             }
         }
@@ -71,6 +74,11 @@ public class back_1726 {
             nInt[i] = Integer.parseInt(arr[i]);
         }
         return nInt;
+    }
+
+    static boolean isCheck(int cur, int next) {
+        return ((next == 4 && cur == 3) || (next == 3 && cur == 4)
+                || (next == 1 && cur == 2) || (next == 2 && cur == 1));
     }
 
     static class Node {
