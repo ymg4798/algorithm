@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class back_1726 {
+public class back_1726_re {
 
     static int[][] move = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
