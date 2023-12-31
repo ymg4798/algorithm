@@ -10,16 +10,17 @@ public class back_2292 {
 
         int n = Integer.parseInt(br.readLine());
 
-        int count = 0;
-        if (n == 1) {
-            count = 1;
-        } else {
-            while (n > 0) {
-                n -= 6 * count;
-                count++;
-            }
-        }
+        int radius = 1;
 
-        System.out.println(count);
+        if (n == 1) {
+            System.out.println(1);
+        } else {
+            int sum = 1;
+            while (sum < n) {
+                sum += 6 * radius;
+                radius++;
+            }
+            System.out.println(radius);
+        }
     }
 }
