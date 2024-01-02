@@ -19,28 +19,40 @@ public class back_1244 {
         }
 
         int k = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine(), " ");
         for (int i = 0; i < k; i++) {
+            st = new StringTokenizer(br.readLine(), " ");
             String student = st.nextToken();
             int num = Integer.parseInt(st.nextToken());
+
+            int idx = 1;
             if (student.equals("1")) {
-                int idx = 1;
-                while (idx <= n) {
-                    arr[idx * num] = (arr[idx * num] % 2 == 0) ? 1 : 0;
+                while (true) {
+                    int next = idx * num;
+                    if (!(next <= n)) break;
+                    arr[next] = (arr[next] % 2 == 0) ? 1 : 0;
+                    idx++;
                 }
             } else {
-                int idx = 1;
-                int prev = num - idx;
-                int next = num + idx;
-                while (prev > 0 && next <= n) {
-                    if (arr[prev] != arr[next]) {
+                while (true) {
+                    int prev = num - idx;
+                    int next = num + idx;
+
+                    if (prev <= 0 ||  next > n || arr[prev] != arr[next] ) {
                         break;
                     }
+
                     arr[prev] = (arr[prev] % 2 == 0) ? 1 : 0;
                     arr[next] = (arr[next] % 2 == 0) ? 1 : 0;
+                    idx++;
                 }
                 arr[num] = (arr[num] % 2 == 0) ? 1 : 0;
             }
+        }
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print(arr[i] + " ");
+
+            if (i%20 == 0) System.out.println();
         }
     }
 }
