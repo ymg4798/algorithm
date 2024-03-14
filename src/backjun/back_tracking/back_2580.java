@@ -18,7 +18,5 @@ public class back_2580 {
                 board[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
-        for (int )
     }
 }
